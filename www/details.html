@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Smart Ledger</title>
+    <link rel="icon" href="img/ledger_icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Add HTML2PDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h2><span id="detailsHeading"></span> Ledger Statement </h2>
+        <div class="action-buttons">
+            <button id="downloadPdfBtn" class="pdf-button">📥 Download PDF</button>
+        </div>
+    </div>
+    <div class="date-filter">
+        <label for="startDate">From Date:</label>
+        <input type="date" id="startDate">
+
+        <label for="endDate">To Date:</label>
+        <input type="date" id="endDate">
+
+        <div style="display: flex;">
+            <button id="filter-date-btn" onclick="filterTransactions()">Filter</button>
+            <button id="clear-date-btn" onclick="clearDateFilter()">clear</button>
+        </div>
+    </div>
+    <div class="table-container">
+        <table border="5" align="center" cellspacing="2" cellpadding="1" id="transactionsTable">
+            <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th style="width: 200px;">Date</th>
+                    <th>Bill No.</th>
+                    <th>Amount</th>
+                    <th>Cash</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody id="transactionTBody">
+                <tr id="loaderRow">
+                    <td colspan="7" style="text-align: center;">
+                        <span id="loader">Loading...</span>
+                        <span class="loader"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="overlay" id="confirmOverlay"></div>
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3>Are you sure you want to delete entry no.<span id="clientNumberDisplay"></span>?</h3>
+            <button id="confirmDeleteBtn" class="confirm-btn">Yes, Delete</button>
+            <button id="cancelDeleteBtn" class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/details.js"></script>
+</body>
+
+</html>

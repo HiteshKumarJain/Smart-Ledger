@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Smart Ledger</title>
+    <link rel="icon" href="/www/img/ledger_icon.jpg" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Welcome to your accounts section</h2>
+        <button id="addClientBtn">Add Client</button>
+    </div>
+
+    <div class="search-sort-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search clients..." autocomplete="off">
+            <button id="refreshBtn" title="Refresh">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 2v6h-6"></path>
+                    <path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
+                    <path d="M3 22v-6h6"></path>
+                    <path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="sort-controls">
+            <label for="sortBy">Sort by:</label>
+            <select id="sortBy">
+                <option value="name">Client Name</option>
+                <option value="amount">Amount</option>
+            </select>
+            <button id="sortDirection" title="Toggle sort direction">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table border="5" align="center" cellspacing="2" cellpadding="1" id="clientTable">
+            <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th style="width: 120px;">Client Name</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="clientTBody">
+                <tr id="loaderRow">
+                    <td colspan="4" style="text-align: center;">
+                        <span id="loader">Loading...</span>
+                        <span class="loader"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="clientModal">
+        <h3>Add New Client</h3>
+        <form action="" id="clientForm">
+            <label for="clientName">Name: </label>
+            <input type="text" id="clientName" required><br><br>
+            <label for="clientAmount">Amount:</label>
+            <input type="number" id="clientAmount" required><br><br>
+            <button id="saveClientBtn">Save</button>
+            <button id="closeModalBtn">Close</button>
+        </form>
+    </div>
+
+    <div class="overlay" id="addDataOverlay"></div>
+    <div class="modal" id="addDataModal">
+        <h3>Add Data for <span id="clientNameSpan"></span></h3>
+        <form action="" id="clientTransactionForm">
+            <label for="dataDate">Date:</label>
+            <input type="date" id="dataDate" required><br><br>
+            <label for="dataBillNo">Bill No:</label>
+            <input type="text" id="dataBillNo"><br><br>
+            <label for="dataAmount">Amount:</label>
+            <input type="number" id="dataAmount" required><br><br>
+            <label for="dataCashReceived">Cash Received:</label>
+            <input type="number" id="dataCashReceived" required><br><br>
+            <label for="dataRemarks">Remarks</label>
+            <input type="text" id="dataRemarks"><br><br>
+            <button id="saveTransactionBtn">Save</button>
+            <button id="closeDataModalBtn">Close</button>
+        </form>
+    </div>
+    <div class="overlay" id="confirmOverlay"></div>
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3>Are you sure you want to delete <span id="clientNameDisplay"></span>?</h3>
+            <button id="confirmDeleteBtn" class="confirm-btn">Yes, Delete</button>
+            <button id="cancelDeleteBtn" class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

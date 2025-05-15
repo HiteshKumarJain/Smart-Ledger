@@ -1,0 +1,887 @@
+/* Define a consistent color palette */
+:root {
+  /* Primary Colors */
+  --primary-dark: #54B65B;
+  /* Dark green */
+  --primary-main: #72D57A;
+  /* Main green */
+  --primary-light: #A1E6A6;
+  /* Light green */
+
+  /* Secondary/Accent Colors */
+  --accent-blue: #4A9DB7;
+  /* Blue for headings/details */
+  --accent-yellow: #F5C86B;
+  /* Yellow for add data buttons */
+  --accent-red: #E8433D;
+  /* Red for delete/cancel actions */
+
+  /* Neutral Shades */
+  --neutral-dark: #333333;
+  --neutral-medium: #777777;
+  --neutral-light: #f5f5f5;
+
+  /* UI Colors */
+  --success: var(--primary-main);
+  --warning: var(--accent-yellow);
+  --danger: var(--accent-red);
+  --info: var(--accent-blue);
+}
+
+/* General styles */
+body {
+  font-family: 'Fira Sans', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Heading styles */
+/* h2 {
+  text-align: center;
+  color: #5BB5D5;
+  width: 100%;
+  margin: 10px auto;
+} */
+h2 {
+  text-align: center;
+  color: #4A9DB7;
+  /* Darker blue with better contrast */
+  width: 100%;
+  margin: 0px auto;
+  /* Increased vertical spacing */
+  font-size: 25px;
+  /* Larger size */
+  font-weight: 600;
+  /* Slightly bolder */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  /* Subtle text shadow */
+  position: relative;
+  padding-bottom: 15px;
+  /* Space for underline */
+}
+
+/* Container to center everything */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f7fa;
+  padding: 20px;
+  width: 100%;
+}
+
+/* Table styling */
+.table-container {
+  overflow-x: auto;
+}
+
+#clientTable,
+#transactionsTable {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
+#clientTable th,
+#transactionsTable th {
+  background: linear-gradient(to bottom, #72D57A, #54B65B);
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+}
+
+#clientTable td,
+#transactionsTable td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+#clientTable tr:hover,
+#transactionsTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+#clientTable tr:nth-child(even),
+#transactionsTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.date,
+.remarks {
+  width: 120px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.name {
+  width: 120px;
+  text-align: center;
+}
+
+/* Button styling */
+button {
+  padding: 8px 12px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  margin: 4px;
+  transition: background-color 0.3s;
+  font-size: medium;
+}
+
+
+#addClientBtn {
+  background: linear-gradient(to bottom, #72D57A, #54B65B);
+  color: white;
+  font-size: 16px;
+  padding: 12px 20px;
+  margin-top: 20px;
+  display: inline-block;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#addClientBtn:hover {
+  background: linear-gradient(to bottom, #67C870, #49A24F);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+#addClientBtn:active {
+  /* Reset on click */
+  transform: translateY(0);
+}
+
+.detailsBtn {
+  background: linear-gradient(to bottom, #90C9DC, #6DB7CF);
+  /* Slightly darker pastel blue */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+.detailsBtn:hover {
+  background: linear-gradient(to bottom, #6DB7CF, #5AA5C0);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* Delete Button - Slightly Darker Pastel Red */
+.deleteClientBtn {
+  background: linear-gradient(to bottom, #F4A5A1, #EF857F);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+.deleteClientBtn:hover {
+  background: linear-gradient(to bottom, #EF857F, #E76B66);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* Add Data Button - Slightly Darker Pastel Yellow */
+.addDataBtn {
+  background: linear-gradient(to bottom, #F7D784, #F5C86B);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+.addDataBtn:hover {
+  background: linear-gradient(to bottom, #F5C86B, #F1B654);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.18);
+}
+
+#saveChangesBtn {
+  background: linear-gradient(to bottom, #72D57A, #54B65B);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+#saveChangesBtn:hover {
+  background: linear-gradient(to bottom, #67C870, #49A24F);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.18);
+}
+
+#cancelChangesBtn {
+  background: linear-gradient(to bottom, #FF6B61, #E8433D);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+#cancelChangesBtn:hover {
+  background: linear-gradient(to bottom, #F55C53, #D93B36);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.18);
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+
+/* Modal Base Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-width: 90%;
+  width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Client Modal */
+#clientModal h3,
+#addDataModal h3 {
+  margin-top: 0;
+  color: #6FBF8E;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+/* Sticky Header */
+/* .modal-header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  z-index: 10;
+  text-align: center;
+} */
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+  padding: 10px;
+  /* margin-bottom: 15px; */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: medium;
+}
+
+/* Form buttons */
+/* #saveClientBtn,
+#saveTransactionBtn {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  margin: 0px auto;
+  width: 40vw;
+}
+
+#closeModalBtn,
+#closeDataModalBtn {
+  background-color: #f44336;
+  color: white;
+  font-weight: bold;
+  margin: 10px auto;
+  width: 40vw;
+} */
+
+/* Glossy Close Buttons (Slightly Lighter Red) */
+
+#closeModalBtn,
+#closeDataModalBtn {
+  background: linear-gradient(to bottom, #FF6B61, #E8433D);
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  margin: 10px auto;
+  width: 22vw;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.confirm-btn:hover,
+#closeModalBtn:hover,
+#closeDataModalBtn:hover {
+  background: linear-gradient(to bottom, #F55C53, #D93B36);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Glossy Cancel Button (Slightly Lighter Gray) */
+.cancel-btn {
+  background: linear-gradient(to bottom, #777, #555);
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(to bottom, #666, #444);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Glossy Save Buttons (Slightly Lighter Green) */
+#saveClientBtn,
+#saveTransactionBtn {
+  background: linear-gradient(to bottom, #72D57A, #54B65B);
+  color: white;
+  font-weight: bold;
+  margin: 0px auto;
+  width: 22vw;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#saveClientBtn:hover,
+#saveTransactionBtn:hover,
+.pdf-button:hover {
+  background: linear-gradient(to bottom, #67C870, #49A24F);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Confirm Delete Modal */
+#confirmModal {
+  width: 300px;
+  text-align: center;
+  left: 50%;
+}
+
+.modal-content {
+  width: 100%;
+}
+
+#confirmModal h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+/* .confirm-btn {
+  background-color: #f44336;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  margin: 10px 5px;
+}
+
+.cancel-btn {
+  background-color: #555;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  margin: 10px 5px;
+} */
+
+.confirm-btn {
+  background: linear-gradient(to bottom, #FF6B61, #E8433D);
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Toast styling */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1500;
+}
+
+#toast-element {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -50px;
+  max-width: 400px;
+  width: 90%;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.toast-success {
+  background: linear-gradient(to bottom, #72D57A, #54B65B);
+  border-left: 5px solid #4CAF7A;
+  /* Brighter green for contrast */
+  color: white;
+  /* White text for better readability */
+  padding: 12px 16px;
+  /* Slightly larger padding for a premium feel */
+  border-radius: 6px;
+  /* Rounded corners for a modern look */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  /* Soft shadow for depth */
+}
+
+.toast-error {
+  background-color: #5A1218;
+  /* Deeper, richer red for a premium feel */
+  border-left: 5px solid #E57373;
+  /* Softer red for contrast */
+  color: #ffffff;
+  /* White text for readability */
+  padding: 12px 16px;
+  /* Comfortable padding */
+  border-radius: 6px;
+  /* Smooth, modern look */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  /* Subtle shadow for depth */
+}
+
+.toast-icon {
+  margin-right: 12px;
+  color: #4CAF50;
+  /* A richer, more elegant green */
+}
+
+/* Error Toast Icon */
+.toast-error .toast-icon {
+  color: #E57373;
+  /* Softer red for a refined look */
+}
+
+.toast-message {
+  color: white;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.toast-error .toast-message {
+  color: #f7ccd6;
+  text-align: center;
+}
+
+.toast-visible {
+  opacity: 1;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader {
+  transform: translateZ(1px);
+}
+
+.loader:after {
+  content: '$';
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 32px;
+  font-weight: bold;
+  background: #FFD700;
+  color: #DAA520;
+  border: 4px double;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .1);
+  animation: coin-flip 4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes coin-flip {
+
+  0%,
+  100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+
+  100% {
+    transform: rotateY(3600deg);
+  }
+}
+
+/* Hide loader when data is loaded */
+.hidden {
+  display: none;
+}
+
+
+.pdf-button {
+  background: linear-gradient(to bottom, #72D57A, #54B65B);
+  color: white;
+  font-weight: bold;
+  margin: 10px auto;
+  width: auto;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-sort-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+  width: 90%;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+  width: 100%;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px 0 0 6px;
+  font-size: 14px;
+}
+
+.search-box button {
+  background: linear-gradient(to bottom, var(--primary-main), var(--primary-dark));
+  color: white;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-controls select {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+#sortDirection {
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#sortDirection.asc svg {
+  transform: rotate(180deg);
+}
+
+/* Add these CSS rules to your existing styles.css file */
+
+/* Button loading indicator */
+.btn-loader {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Table loading animation with dollar sign */
+#loaderRow {
+  height: 120px;
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  transform: translateZ(1px);
+  margin: 20px auto;
+}
+
+.loader:after {
+  content: '$';
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 32px;
+  font-weight: bold;
+  background: #FFD700;
+  color: #DAA520;
+  border: 4px double;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .1);
+  animation: coin-flip 4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes coin-flip {
+
+  0%,
+  100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+
+  100% {
+    transform: rotateY(3600deg);
+  }
+}
+
+/* Improved Toast Styling */
+.toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.toast-message {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+#toast-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1500;
+  pointer-events: none;
+}
+
+/* Date Filter Container */
+.date-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: var(--neutral-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: 10px auto;
+}
+
+/* Date Input Fields */
+.date-filter input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid var(--neutral-medium);
+  border-radius: 6px;
+  background-color: white;
+  color: var(--neutral-dark);
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.date-filter input:focus {
+  border-color: var(--accent-blue);
+}
+
+/* Filter Button */
+#filter-date-btn {
+  padding: 10px 15px;
+  background: linear-gradient(to bottom, var(--primary-main), var(--primary-dark));
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#filter-date-btn:hover {
+  background: linear-gradient(to bottom, #67C870, #49A24F);
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.18);
+}
+
+#clear-date-btn {
+  padding: 10px 15px;
+  background: linear-gradient(to bottom, var(--accent-red), #E8433D);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#clear-date-btn:hover {
+  background: linear-gradient(to bottom, #F55C53, #D93B36);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .modal {
+    width: 65%;
+    padding: 15px;
+  }
+
+  #saveClientBtn,
+  #saveTransactionBtn,
+  #closeModalBtn,
+  #closeDataModalBtn {
+    width: 45vw;
+  }
+
+  #clientTable,
+  #transactionsTable {
+    width: 100%;
+  }
+
+  button {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .action button {
+    width: 21vw;
+  }
+
+  .search-sort-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    max-width: 100%;
+  }
+
+  .date-filter {
+    flex-direction: column;
+    width: 70%;
+  }
+
+  .date-filter label,
+  .date-filter input,
+  #filterBtn {
+    width: 100%;
+  }
+}
+
+/* This styling is done to avoid background scrolling when a modal is open */
+.no-scroll {
+  overflow: hidden;
+}
