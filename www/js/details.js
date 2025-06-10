@@ -273,7 +273,8 @@ function filterTransactions() {
     });
     totalAmount = filteredAmount;
     console.log("the filtered amount is : " + filteredAmount);
-    displayTransactions(filteredData);
+    let msg =filteredData.length > 0 ? `` : `No transactions found for the given date range.`
+    displayTransactions(filteredData, msg);
 }
 
 function clearDateFilter() {
@@ -451,7 +452,7 @@ function cancelEdit(slNo) {
 }
 
 // Function to group and display transactions
-function displayTransactions(transactions) {
+function displayTransactions(transactions,message) {
     const transactionTBody = document.getElementById('transactionTBody');
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -475,7 +476,8 @@ function displayTransactions(transactions) {
     let slNo = 1;
 
     if (transactions.length === 0) {
-        trtd.push(`<tr><td colspan="7" style="text-align: center;">No transactions found for the selected date range.</td></tr>`);
+        const displayMessage = message || 'No transactions found';
+        trtd.push(`<tr><td colspan="7" style="text-align: center;">${displayMessage}</td></tr>`);
     } else {
         Object.keys(groupedByMonth).forEach(monthYear => {
             const monthTransactions = groupedByMonth[monthYear];
